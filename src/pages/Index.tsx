@@ -1,300 +1,241 @@
 
-import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code2, BarChart3, Users, ChevronRight, Star, Check } from "lucide-react";
-import AuthModal from "@/components/auth/AuthModal";
+import { Calendar, Code, Users, Video, ArrowRight, CheckCircle, Star, Target } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'register'>('register');
-
-  const features = [
-    {
-      icon: Code2,
-      title: "Smart Code Editor",
-      description: "Monaco-powered editor with real-time collaboration and AI-assisted debugging",
-      preview: "Monaco Editor with syntax highlighting"
-    },
-    {
-      icon: BarChart3,
-      title: "AI-Driven Analytics",
-      description: "Comprehensive performance insights and candidate assessment metrics",
-      preview: "Interactive dashboard with charts"
-    },
-    {
-      icon: Users,
-      title: "Real-time Collaboration",
-      description: "Seamless video integration with live code sharing and instant feedback",
-      preview: "Video call interface preview"
-    }
-  ];
-
-  const companies = [
-    "Google", "Microsoft", "Meta", "Amazon", "Netflix", "Uber"
-  ];
-
-  const testimonials = [
-    {
-      quote: "This platform revolutionized our technical hiring process. The AI insights are incredibly accurate.",
-      author: "Sarah Chen",
-      role: "Engineering Manager at TechCorp",
-      rating: 5
-    },
-    {
-      quote: "The real-time collaboration features make remote interviews feel natural and engaging.",
-      author: "Michael Rodriguez",
-      role: "Senior Recruiter at StartupXYZ",
-      rating: 5
-    }
-  ];
-
-  const handleAuthClick = (mode: 'login' | 'register') => {
-    setAuthMode(mode);
-    setAuthModalOpen(true);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1419] via-[#1B2631] to-[#0F1419]">
-      {/* Navigation Header */}
-      <nav className="sticky top-0 z-50 bg-[#0F1419]/95 backdrop-blur-md border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen bg-[#0F1419]">
+      {/* Header */}
+      <header className="bg-[#1B2631] border-b border-gray-700">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Code2 className="h-8 w-8 text-[#00EA64]" />
-              <span className="text-xl font-bold text-white">CodeRecruit</span>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-300 hover:text-[#00EA64] transition-colors">Features</a>
-              <a href="#pricing" className="text-gray-300 hover:text-[#00EA64] transition-colors">Pricing</a>
-              <a href="#docs" className="text-gray-300 hover:text-[#00EA64] transition-colors">Documentation</a>
-            </div>
-
             <div className="flex items-center space-x-4">
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-gray-800"
-                onClick={() => handleAuthClick('login')}
-              >
-                Sign In
-              </Button>
-              <Button 
-                className="bg-[#00EA64] hover:bg-[#00EA64]/90 text-black font-semibold"
-                onClick={() => handleAuthClick('register')}
-              >
-                Get Started
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
+              <h1 className="text-2xl font-bold text-white">CodeRecruit</h1>
+              <Badge className="bg-green-600 text-white">Beta</Badge>
+            </div>
+            <div className="flex space-x-4">
+              <Link to="/candidate">
+                <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+                  Candidate Dashboard
+                </Button>
+              </Link>
+              <Link to="/dashboard">
+                <Button className="bg-green-600 hover:bg-green-700 text-white">
+                  Recruiter Dashboard
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-[#00EA64]/10 text-[#00EA64] border-[#00EA64]/20">
-              ✨ Now with AI-powered insights
-            </Badge>
-            
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              AI-Powered Technical
-              <span className="block text-[#00EA64]">Interviews That Scale</span>
-            </h1>
-            
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Real-time Collaboration • AI Code Analysis • Instant Insights
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Button 
-                size="lg" 
-                className="bg-[#00EA64] hover:bg-[#00EA64]/90 text-black font-semibold px-8 py-4 text-lg"
-                onClick={() => handleAuthClick('register')}
-              >
-                Start Free Trial
-                <ChevronRight className="ml-2 h-5 w-5" />
+      <section className="py-20 px-6">
+        <div className="container mx-auto text-center">
+          <h2 className="text-5xl font-bold text-white mb-6">
+            The Future of Technical Interviews
+          </h2>
+          <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
+            Streamline your hiring process with AI-powered interview management, 
+            real-time coding assessments, and comprehensive candidate evaluation.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Link to="/dashboard">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
+                Start Recruiting
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-4 text-lg"
-              >
-                Watch Demo
+            </Link>
+            <Link to="/candidate">
+              <Button size="lg" variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+                Practice Interviews
               </Button>
-            </div>
-
-            {/* Floating Code Animation */}
-            <div className="relative">
-              <div className="bg-[#1B2631] rounded-lg p-6 shadow-2xl max-w-2xl mx-auto">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-[#00EA64] rounded-full"></div>
-                </div>
-                <pre className="text-left text-sm text-gray-300">
-                  <code>
-{`function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n-1) + fibonacci(n-2);
-}`}
-                  </code>
-                </pre>
-              </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Everything you need for technical hiring
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Streamline your recruitment process with AI-powered tools that help you identify top talent faster.
-            </p>
-          </div>
+      <section className="py-16 px-6 bg-[#1B2631]">
+        <div className="container mx-auto">
+          <h3 className="text-3xl font-bold text-white text-center mb-12">
+            Everything You Need for Successful Interviews
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="bg-[#0F1419] border-gray-700">
+              <CardHeader>
+                <Calendar className="h-8 w-8 text-blue-400 mb-2" />
+                <CardTitle className="text-white">Smart Scheduling</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Automated interview scheduling with calendar integration
+                </CardDescription>
+              </CardHeader>
+            </Card>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-gray-200 shadow-lg hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-[#00EA64] rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="h-6 w-6 text-black" />
-                  </div>
-                  <CardTitle className="text-gray-900">{feature.title}</CardTitle>
-                  <CardDescription className="text-gray-600">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-500">
-                    {feature.preview}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="bg-[#0F1419] border-gray-700">
+              <CardHeader>
+                <Code className="h-8 w-8 text-green-400 mb-2" />
+                <CardTitle className="text-white">Live Coding</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Real-time code collaboration with syntax highlighting
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-[#0F1419] border-gray-700">
+              <CardHeader>
+                <Video className="h-8 w-8 text-purple-400 mb-2" />
+                <CardTitle className="text-white">Video Interviews</CardTitle>
+                <CardDescription className="text-gray-400">
+                  HD video calls with screen sharing capabilities
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-[#0F1419] border-gray-700">
+              <CardHeader>
+                <Users className="h-8 w-8 text-orange-400 mb-2" />
+                <CardTitle className="text-white">Team Collaboration</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Multi-interviewer support with shared notes
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-gray-600 mb-8">Trusted by leading companies worldwide</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              {companies.map((company, index) => (
-                <div key={index} className="text-2xl font-bold text-gray-400">
-                  {company}
+      {/* For Recruiters */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-3xl font-bold text-white mb-6">For Recruiters</h3>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">Comprehensive Dashboard</h4>
+                    <p className="text-gray-400">Track all interviews, candidates, and performance metrics in one place</p>
+                  </div>
                 </div>
-              ))}
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">AI-Powered Insights</h4>
+                    <p className="text-gray-400">Get intelligent recommendations for candidate evaluation</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">Custom Problem Sets</h4>
+                    <p className="text-gray-400">Create and manage coding problems tailored to your needs</p>
+                  </div>
+                </div>
+              </div>
+              <Link to="/dashboard">
+                <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+                  Explore Recruiter Features
+                </Button>
+              </Link>
+            </div>
+            <div className="bg-[#1B2631] rounded-lg p-8 border border-gray-700">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-white font-medium">Active Interviews</span>
+                  <Badge className="bg-green-600 text-white">12</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-white font-medium">This Week</span>
+                  <Badge className="bg-blue-600 text-white">8</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-white font-medium">Success Rate</span>
+                  <Badge className="bg-yellow-600 text-white">85%</Badge>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-gray-200">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <blockquote className="text-gray-700 mb-4">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="text-sm">
-                    <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                    <div className="text-gray-600">{testimonial.role}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-[#0F1419]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Ready to transform your hiring process?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of companies using CodeRecruit to find exceptional talent.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-[#00EA64] hover:bg-[#00EA64]/90 text-black font-semibold px-8 py-4 text-lg"
-            onClick={() => handleAuthClick('register')}
-          >
-            Start Your Free Trial
-            <ChevronRight className="ml-2 h-5 w-5" />
-          </Button>
+      {/* For Candidates */}
+      <section className="py-16 px-6 bg-[#1B2631]">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="bg-[#0F1419] rounded-lg p-8 border border-gray-700">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Star className="h-4 w-4 text-yellow-400" />
+                    <span className="text-white font-medium">Overall Score</span>
+                  </div>
+                  <span className="text-green-400 font-bold">88%</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Target className="h-4 w-4 text-blue-400" />
+                    <span className="text-white font-medium">Problems Solved</span>
+                  </div>
+                  <span className="text-blue-400 font-bold">156</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-green-400" />
+                    <span className="text-white font-medium">Success Rate</span>
+                  </div>
+                  <span className="text-green-400 font-bold">92%</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-white mb-6">For Candidates</h3>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">Practice Environment</h4>
+                    <p className="text-gray-400">Hone your skills with HackerRank-style coding challenges</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">Performance Tracking</h4>
+                    <p className="text-gray-400">Monitor your progress and identify areas for improvement</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="h-5 w-5 text-green-400 mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-white">Interview Preparation</h4>
+                    <p className="text-gray-400">System checks and preparation tools for optimal performance</p>
+                  </div>
+                </div>
+              </div>
+              <Link to="/candidate">
+                <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white">
+                  Start Practicing
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1B2631] py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Code2 className="h-6 w-6 text-[#00EA64]" />
-                <span className="text-lg font-bold text-white">CodeRecruit</span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                AI-powered technical interviews that help you find the best talent.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-white font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-[#00EA64]">Features</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">Pricing</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">API</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-white font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-[#00EA64]">About</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">Careers</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-white font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-[#00EA64]">Documentation</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">Help Center</a></li>
-                <li><a href="#" className="hover:text-[#00EA64]">Status</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-            <p>&copy; 2024 CodeRecruit. All rights reserved.</p>
-          </div>
+      <footer className="bg-[#0F1419] border-t border-gray-700 py-8 px-6">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-400">
+            © 2024 CodeRecruit. Revolutionizing technical interviews with AI.
+          </p>
         </div>
       </footer>
-
-      <AuthModal 
-        open={authModalOpen} 
-        onOpenChange={setAuthModalOpen}
-        mode={authMode}
-        onModeChange={setAuthMode}
-      />
     </div>
   );
 };
