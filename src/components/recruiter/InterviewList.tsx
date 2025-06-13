@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -7,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, Video, Edit, RotateCcw, X, User } from 'lucide-react';
 import { format } from 'date-fns';
+import type { Database } from '@/integrations/supabase/types';
 
 interface InterviewListProps {
   filters: {
@@ -17,11 +17,14 @@ interface InterviewListProps {
   };
 }
 
+type InterviewStatus = Database['public']['Enums']['interview_status'];
+type InterviewType = Database['public']['Enums']['interview_type'];
+
 interface Interview {
   id: string;
   position_title: string;
-  interview_type: string;
-  status: string;
+  interview_type: InterviewType;
+  status: InterviewStatus;
   scheduled_at: string;
   duration_minutes: number;
   candidates: {
@@ -57,11 +60,11 @@ export function InterviewList({ filters }: InterviewListProps) {
         .order('scheduled_at', { ascending: false });
 
       if (filters.status) {
-        query = query.eq('status', filters.status);
+        query = query.eq('status', filters.status as InterviewStatus);
       }
 
       if (filters.type) {
-        query = query.eq('interview_type', filters.type.toLowerCase());
+        query = query.eq('interview_type', filters.type.toLowerCase() as InterviewType);
       }
 
       const { data, error } = await query;
@@ -71,7 +74,7 @@ export function InterviewList({ filters }: InterviewListProps) {
     }
   });
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: InterviewStatus) => {
     switch (status) {
       case 'scheduled': return 'bg-blue-500';
       case 'active': return 'bg-[#00EA64]';
@@ -81,7 +84,7 @@ export function InterviewList({ filters }: InterviewListProps) {
     }
   };
 
-  const getStatusTextColor = (status: string) => {
+  const getStatusTextColor = (status: InterviewStatus) => {
     switch (status) {
       case 'active': return 'text-black';
       default: return 'text-white';
